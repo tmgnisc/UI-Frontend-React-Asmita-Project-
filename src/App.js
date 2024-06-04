@@ -1,24 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+import "./App.css";
+import NavbarWrapper from "./components/NavbarWrapper";
+import Register from "./pages/Register";
 
 function App() {
+  const user = JSON.parse(localStorage.getItem("user"));
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Router>
+        <NavbarWrapper />
+
+        <ToastContainer />
+        <Routes>
+          {/* <Route path="/" element={<SplashScreenHandler />} /> */}
+          {/* <Route path="/home" element={<Homepage />} /> */}
+
+          <Route path="/" element={<Register />} />
+          <Route path="/register" element={<Register />} />
+
+
+          {/* <Route path="/login" element={<Login />} /> */}
+
+          {/* <Route
+            path="/password-reset/:userId/:token"
+            element={<PasswordResetForm />}
+          /> */}
+        </Routes>
+      </Router>
+    </>
   );
 }
 
