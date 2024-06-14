@@ -7,6 +7,7 @@ const Api = axios.create({
   },
 });
 
+//configuration for axios
 const config = {
   headers: {
     authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -69,7 +70,7 @@ export const getAllArticlesApi = () => Api.get("/api/article/get_articles");
 
 //get single api
 export const getSingleArticleApi = (id) =>
-  Api.get(`/api/article/get_article/${id}`);
+  Api.get(`http://localhost:5000/api/article/get_article/${id}`);
 
 //update product
 export const updateArticleApi = (id, formData) =>
@@ -149,8 +150,10 @@ export const getUserCalendarEventsApi = async (userId) => {
 //   return response;
 // };
 
-export const forgotPassword = (data) =>
+export const forgetpasswordApi = (data) =>
   Api.post(`/api/user/forgot-password`, data);
+export const resetPasswordApi = (data, token) =>
+  Api.put(`/api/user/password/reset/${token}`, data);
 export const getAllCategoryApi = (data) =>
   Api.get(`/api/category/allCategories`, data);
 export const filterCategoryandPrice = (data) =>
