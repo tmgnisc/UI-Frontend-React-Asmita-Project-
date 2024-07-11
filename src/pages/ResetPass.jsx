@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { resetPasswordApi } from "../apis/Api";
+import AnimatedWave from "../components/AnimatedWave";
 
 const ResetPassword = () => {
   const navigate = useNavigate();
@@ -12,58 +13,82 @@ const ResetPassword = () => {
     setNewPassword(e.target.value);
   };
 
-  const handleResetPassword = () => {
+  const handleResetPassword = (e) => {
+    e.preventDefault(); // Prevent default form submission
+
+    if (!newPassword) {
+      toast.error("Please enter a new password.");
+      return;
+    }
+
     const data = {
       password: newPassword,
     };
 
     resetPasswordApi(data, token)
       .then((res) => {
-        if (res.data.success) {
+        console.log("API response:", res);
+        if (res.data && res.data.success) {
           toast.success(res.data.message);
           navigate("/");
         } else {
-          toast.error("Failed to update password");
+          toast.error(res.data.message || "Failed to update password");
         }
       })
       .catch((err) => {
-        console.log(err);
-        toast.error("Internal server error");
+        console.error("API error:", err);
+        toast.error(err.response?.data?.message || "Internal server error");
       });
   };
 
   return (
-    <div className="container mt-5">
-      <div className="row justify-content-center">
-        <div className="col-md-6">
-          <div className="card shadow">
-            <div className="card-body">
-              <h3 className="card-title text-center mb-4">Password Reset</h3>
-              <form>
-                <div className="form-group">
-                  <label htmlFor="newPassword">New Password</label>
-                  <input
-                    type="password"
-                    id="newPassword"
-                    className="form-control"
-                    placeholder="Enter your new password"
-                    style={{ color: "black" }}
-                    onChange={handleNewPassword}
-                    required
-                  />
-                </div>
-                <div className="text-center">
-                  <button
-                    type="button"
-                    className="btn btn-primary"
-                    onClick={handleResetPassword}
-                  >
-                    Reset Password
-                  </button>
-                </div>
-              </form>
+    <div className="wave-section">
+      <AnimatedWave />
+
+      <div
+        className="form-container d-flex justify-content-center align-items-center border rounded"
+        style={{ minHeight: "40vh", backgroundColor: "#ffffff" }}
+      >
+        <div
+          className="border rounded p-4"
+          style={{
+            width: "100%",
+            maxWidth: "400px",
+            backgroundColor: "#ffccc",
+            boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+          }}
+        >
+          <h2 className="text-center mb-3" style={{ color: "#3586ff" }}>
+            Reset Password
+          </h2>
+          <p className="text-center">
+            Your previous password has been reset. Please set a new password for
+            your account.
+          </p>
+
+          <form onSubmit={handleResetPassword}>
+            <div className="mb-3">
+              <label>New Password</label>
+              <input
+                onChange={handleNewPassword}
+                className="form-control"
+                type="password"
+                placeholder="Enter your new password"
+                required
+              />
             </div>
-          </div>
+            <button
+              type="submit"
+              className="custom-button border rounded btn w-100"
+              style={{
+                color: "black",
+                border: "6px solid black",
+                width: "50%",
+              }}
+            >
+              Set Password
+            </button>
+          </form>
         </div>
       </div>
     </div>

@@ -1,11 +1,14 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap');
 
 body, html {
   margin: 0;
   padding: 0;
   height: 100%;
   overflow: auto; /* Ensure scrolling is allowed */
+  font-family: 'Merriweather', serif;
 }
+
+
 
 .navbar {
   background-color: transparent !important;
@@ -26,9 +29,6 @@ body, html {
   flex-grow: 1;
 }
 
-.nav-link {
-  color: white !important;
-}
 
 .btn-outline-light {
   color: white;
@@ -52,12 +52,38 @@ body, html {
   margin-left: auto !important; /* Bootstrap utility class to push items to the right */
 }
 
-body, html {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  overflow: auto; /* Ensure scrolling is allowed */
+.whatsapp-icon-container {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+
+.tooltip-text {
+  visibility: hidden;
+  width: 120px;
+  background-color: rgba(0, 0, 0, 0.6);;
+
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  right: 55px; /* Adjust as needed */
+  bottom: 15px; /* Adjust as needed */
+  opacity: 0,5;
+  transition: opacity 0.3s;
+}
+
+.whatsapp-icon-container:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
 
 .hero-section {
   position: relative;
@@ -200,6 +226,91 @@ body, html {
   text-align: center;
   margin-top: 20px;
 }
+.buttonNav {
+  background-color: transparent;
+  color: white;
+  padding: 5px 15px;
+  border: 1px solid white;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+}
+
+.buttonNav:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white; /* Keep text color white on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adding a subtle shadow */
+}
+.button {
+  margin-left: 10px;
+  background-color: transparent;
+  color: white;
+  padding: 7px 15px;
+  text-decoration: none; /* Ensure no underline */
+  border: 1px solid white;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+}
+
+.button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white; /* Keep text color white on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adding a subtle shadow */
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  padding: 5px 15px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
+
+.nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.1); /* Light transparent white */
+  color: white;
+  border-radius: 5px;
+}
+
+.nav-link.active {
+  text-decoration: underline;
+  color: white;
+}
+
+.navbar-toggler {
+  border: none; /* Remove border */
+}
+.navbar-toggler:hover {
+  background-color: rgba(255, 255, 255, 0.1); /* Light transparent white */
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28255, 255, 255, 1%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+  /* Set the color to white */
+}
+
+
+
+
+.dropdown-menu {
+  background-color: white; /* White background for contrast */
+  border-radius: 5px; /* Slight border radius for rounded corners */
+  border: 1px solid #ddd; /* Light border */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.dropdown-item {
+  color: #333; /* Dark text color for readability */
+  padding: 5px 15px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dropdown-item:hover {
+  background-color: #3B82F6; /* Match navbar background color on hover */
+  color: white; /* White text color on hover */
+}
+
+
 
 .get-started-button {
   background-color: #b2d5f5;
@@ -237,8 +348,20 @@ body, html {
 
 .btn {
   background-color: transparent;
-  color: white;
+  border: solid black;
 }
+
+.btn-danger {
+  background-color: transparent;
+  border: solid black;
+}
+.btn-danger:hover{
+  background-color: red;
+  border: none;
+}
+
+
+
 /* Define the base style for the button */
 .custom-button {
   color: black;
@@ -251,6 +374,7 @@ body, html {
 /* Define the hover state for the button */
 .custom-button:hover {
   background-color: #3586ff; /* Darker color on hover */
+
 }
 
 
@@ -292,6 +416,7 @@ body, html {
 
 .btn:hover {
   background-color: #3586ff;
+  border:none;
 }
 .form-container {
   position: absolute; /* Correct the position value */
@@ -381,7 +506,7 @@ body, html {
 
 .hero-shape-section {
   display: flex;
-  flex-wrap: wrap; /* Makes the sections stack on smaller screens */
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   width: 100%;
@@ -389,36 +514,33 @@ body, html {
 
 .image-section, .text-section {
   flex: 1;
-  min-width: 300px; /* Ensures sections don't get too small */
+  min-width: 300px;
 }
 
 .hero-shape {
   position: relative;
   width: 100%;
-  max-width: none; /* Allow the image to take the full width */
+  max-width: none;
   margin: 0;
   overflow: hidden;
-  border-radius: 0 0 20px 100px; /* Rounded corners at the bottom */
+  border-radius: 0 0 20px 100px;
 }
 
 .background-image {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Ensure the image covers the entire container */
+  object-fit: cover;
   display: block;
 }
 
-
-
-
+/* MentalHealthSection Styles */
 .mental-health-section {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   padding: 20px;
-  margin-top: 40px; /* Add top margin for spacing */
+  margin-top: 40px;
   justify-content: center;
-
 }
 
 .image-container {
@@ -428,8 +550,7 @@ body, html {
 .counselling-image {
   width: 100%;
   border-radius: 8px;
-  height: 400px; /* Set the height you want */
-
+  height: 400px; /* Set height, adjust as needed */
 }
 
 .text-container {
@@ -466,15 +587,8 @@ body, html {
   cursor: pointer;
   font-size: 16px;
 }
-/* MentalHealthSection.css */
-/* Existing styles... */
-.card-container {
-  display: flex;
-  gap: 20px;
-  margin-top: 20px;
-  height: 200px;
-}
 
+/* Card Container */
 .card-container {
   display: flex;
   gap: 20px;
@@ -487,17 +601,17 @@ body, html {
   padding: 20px;
   border-radius: 8px;
   flex: 2;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Add shadow primarily at the bottom */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  border: none; /* Ensure no border is visible */
+  border: none;
 }
 
 .card .icon {
   font-size: 24px;
-  color: #000000; /* Icon color */
-  margin-bottom: 10px; /* Space between icon and title */
+  color: #000000;
+  margin-bottom: 10px;
 }
 
 .card h3 {
@@ -508,3 +622,56 @@ body, html {
 .card p {
   font-size: 14px;
 }
+
+/* Media Queries for Responsiveness */
+@media (max-width: 1200px) {
+  .mental-health-section {
+    flex-direction: column;
+  }
+  
+  .text-container {
+    margin-left: 0;
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-shape-section {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .image-section, .text-section {
+    min-width: 100%;
+  }
+
+  .hero-shape {
+    border-radius: 0;
+  }
+
+  .counselling-image {
+    height: auto; /* Adjust height for small screens */
+  }
+
+  .text-container {
+    margin-left: 0;
+    text-align: center;
+  }
+
+  .get-started-btn {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  .card-container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .card {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
+
+

@@ -1,7 +1,7 @@
-
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import { forgetpasswordApi } from "../apis/Api";
+import AnimatedWave from "../components/AnimatedWave";
 
 const PasswordResetRequest = () => {
   const [email, setEmail] = useState("");
@@ -29,57 +29,53 @@ const PasswordResetRequest = () => {
       });
   };
 
-  const formStyle = {
-    display: "flex",
-    flexDirection: "column",
-    maxWidth: "400px",
-    margin: "0 auto",
-    padding: "20px",
-    borderRadius: "8px",
-    boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)",
-    backgroundColor: "#fff",
-  };
-
-  const labelStyle = {
-    marginBottom: "10px",
-    fontWeight: "bold",
-  };
-
-  const inputStyle = {
-    marginBottom: "20px",
-    padding: "10px",
-    borderRadius: "4px",
-    border: "1px solid #ccc",
-  };
-
-  const buttonStyle = {
-    padding: "10px 15px",
-    border: "none",
-    borderRadius: "4px",
-    backgroundColor: "#c2185b",
-    color: "#fff",
-    cursor: "pointer",
-    transition: "background-color 0.2s",
-  };
-
   return (
-    <div style={{ paddingTop: "50px" }}>
-      <h2 style={{ textAlign: "center" }}>Password Reset</h2>
-      <form style={formStyle}>
-        <label htmlFor="email" style={labelStyle}>
-          Enter your email address:
-        </label>
-        <input
-          type="email"
-          id="email"
-          onChange={handleForgotPasswordEmail}
-          required
-          style={inputStyle}
-        />
-        <button onClick={forgotPassword} type="submit" style={buttonStyle}>
-          Send Password Reset Email
-        </button>
-      </form>
+    <div className="wave-section">
+      <AnimatedWave />
+      <div
+        className=" form-container d-flex justify-content-center align-items-center  border rounded"
+        style={{ minHeight: "30vh", backgroundColor: "#ffffff" }}
+      >
+        <div
+          className="border rounded p-4"
+          style={{
+            width: "100%",
+            maxWidth: "400px",
+            backgroundColor: "#ffccc",
+            boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+          }}
+        >
+          <h2 className="text-center mb-3 " style={{ color: "#3586ff" }}>
+            Forgot Password?
+          </h2>
+          <p className="text-center">
+            Don’t worry, happens to all of us. Enter your email below to recover
+            your password.
+          </p>
+          <form>
+            <div className="mb-3">
+              <label>Email</label>
+              <input
+                onChange={handleForgotPasswordEmail}
+                className="form-control"
+                type="email"
+                placeholder="Enter your email"
+              />
+            </div>
+            <button
+              onClick={forgotPassword}
+              className=" custom-button border rounded btn w-100"
+              style={{
+                color: "black",
+                border: " 6px solid black",
+                width: "50%",
+              }}
+            >
+              Send
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
   );
 };
